@@ -1,0 +1,75 @@
+１. 测试国内的镜像源，测试完之后会在一个指定的文件中生成镜像列表
+
+sudo pacman-mirrors -i -c China -m rank
+
+2. 设置archlinuxcn源
+
+sudo nano /etc/pacman.conf
+
+\##在文件末尾添加以下内容
+
+[archlinuxcn]
+
+SigLevel = Optional TrustedOnly
+
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+
+3.更新源列表
+
+sudo pacman-mirrors -g
+
+4.更新系统
+
+sudo  pacman -Syyu
+
+5.错误：无法从 mirrors.ustc.edu.cn : Operation timed out after 10001 milliseconds with 0 out of 0 bytes received 获取文件 'archlinuxcn.db'
+错误：无法升级 archlinuxcn (下载数据库出错)
+错误：未能成功同步所有数据库
+
+解决方法;更新软件源，只需要将msys64\etc\pacman.d 目录下的三个文件改为需要配置的软件源即可。
+
+mirrorlist.msys 
+
+Server = http://mirrors.ustc.edu.cn/msys2/msys/$arch
+
+mirrorlist.mingw64 
+
+Server = http://mirrors.ustc.edu.cn/msys2/mingw/x86_64
+
+mirrorlist.mingw32
+
+Server = http://mirrors.ustc.edu.cn/msys2/mingw/i686
+
+6.再次更新系统
+
+sudo pacman -Syyu
+
+二.安装中文输入法
+
+1.导入GPG Key
+
+sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
+
+2.安装输入法
+
+sudo pacman -S fcitx-im (#默认全部安装)
+
+sudo pacman -S fcitx-configtool
+
+sudo pacman -S fcitx-sogoupinyin (#安装搜狗拼音)
+
+3.添加输入法配置文件
+
+nano /etc/environment
+
+4.在文件中添加如下内容
+
+or /etc/profile
+
+export GTK_IM_MODULE=fcitx
+
+export QT_IM_MODULE=fcitx
+
+export XMODIFIERS="@im=fcitx"
+
+重启系统
