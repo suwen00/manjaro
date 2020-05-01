@@ -1,0 +1,101 @@
+一、准备资料
+
+1.manjaro一台
+
+2.能上网的安卓或者iphone一台需要下载ssr资料
+
+3.ssr节点
+
+二、正式开始
+
+很多帖子使用的是这条命令git clone -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git
+
+但是由于github被墙的原因我们在终端下载时会导致链接失败克隆不到文件
+
+
+1
+
+我直接放在网盘以便国内用户使用https://www.jianguoyun.com/p/DdCNzLsQlfaXCBiPz_AC
+
+将文件下载下来后改名称为shadowsocksr.zip
+
+
+3
+
+将下载下来的文件夹复制到etc目录下
+
+cp -r shadowsocksr /etc
+
+接下来cd /etc/shadowsocksr
+
+执行./initcfg.sh
+
+运行如下命令编写user-config.json配置文件
+
+使用vi或者nano 都可以
+
+{
+
+"server": "你的ipo",
+
+"server_ipv6": "::",
+
+"server_port": 服务器端口,
+
+"local_address": "127.0.0.1",    #本地地址
+
+"local_port": 1080,                    #本地端口
+
+"password": "服务器密码",           
+
+"method": "加密方式
+
+"protocol": "auth_aes128_md5",      #协议
+
+"protocol_param": "协议参数
+
+"obfs": "tls1.2_ticket_auth_compatible",        #混淆
+
+"obfs_param": "",
+
+"speed_limit_per_con": 0,
+
+"speed_limit_per_user": 0,
+
+"additional_ports" : {}, // only works under multi-user mode
+
+"additional_ports_only" : false, // only works under multi-user mode
+
+"timeout": 120,
+
+"udp_timeout": 60,
+
+"dns_ipv6": false,
+
+"connect_verbose_info": 0,
+
+"redirect": "",
+
+"fast_open": false
+
+}
+
+按照填写完保存即可
+
+cd shadowsocks
+
+运行./local.py
+
+显示一下内容即是运行成功
+
+./local.py
+
+IPv6 support
+
+2020-03-10 23:04:53 INFO    util.py:85 loading libsodium from libsodi
+
+um.so.23
+
+在设置中的代理这样设置  接下来即可食用google
+
+
