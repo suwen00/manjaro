@@ -1,1 +1,2 @@
-＃Share some manjaro use experience and tutorials, I hope all the big cows can help correct me.
+＃分享一些manjaro的使用经验和教程，希望所有的大奶牛都能帮助纠正我。
+国内用户可以关注简书：素问0
